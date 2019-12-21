@@ -135,56 +135,43 @@ nv.interactiveGuideline = function() {
                     pointXValue = xScale.invert(mouseX);
                 }
 
-                dispatch.elementMousemove({
+                var eventData = {
                     mouseX: mouseX,
                     mouseY: mouseY,
-                    pointXValue: pointXValue
-                });
+                    pointXValue: pointXValue,
+                    MouseEvent: d3.event
+                }
+
+                dispatch.elementMousemove(eventData);
 
                 //If user double clicks the layer, fire a elementDblclick
                 if (d3.event.type === "dblclick") {
-                    dispatch.elementDblclick({
-                        mouseX: mouseX,
-                        mouseY: mouseY,
-                        pointXValue: pointXValue
-                    });
+                    dispatch.elementDblclick(eventData);
                 }
 
                 // if user single clicks the layer, fire elementClick
                 if (d3.event.type === 'click') {
-                    dispatch.elementClick({
-                        mouseX: mouseX,
-                        mouseY: mouseY,
-                        pointXValue: pointXValue
-                    });
+                    dispatch.elementClick(eventData);
                 }
 
                 // if user presses mouse down the layer, fire elementMouseDown
                 if (d3.event.type === 'mousedown') {
-                	dispatch.elementMouseDown({
-                		mouseX: mouseX,
-                		mouseY: mouseY,
-                		pointXValue: pointXValue
-                	});
+                	dispatch.elementMouseDown(eventData);
                 }
 
                 // if user presses mouse down the layer, fire elementMouseUp
                 if (d3.event.type === 'mouseup') {
-                	dispatch.elementMouseUp({
-                		mouseX: mouseX,
-                		mouseY: mouseY,
-                		pointXValue: pointXValue
-                	});
+                	dispatch.elementMouseUp(eventData);
                 }
             }
 
             svgContainer
-                .on("touchmove",mouseHandler)
-                .on("mousemove",mouseHandler, true)
-                .on("mouseout" ,mouseHandler,true)
-                .on("mousedown" ,mouseHandler,true)
-                .on("mouseup" ,mouseHandler,true)
-                .on("dblclick" ,mouseHandler)
+                .on("touchmove", mouseHandler)
+                .on("mousemove", mouseHandler, true)
+                .on("mouseout", mouseHandler, true)
+                .on("mousedown", mouseHandler, true)
+                .on("mouseup", mouseHandler, true)
+                .on("dblclick", mouseHandler)
                 .on("click", mouseHandler)
             ;
 
