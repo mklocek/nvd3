@@ -1,4 +1,4 @@
-/* nvd3 version 1.8.6-dev (https://github.com/novus/nvd3) 2019-12-21 */
+/* nvd3 version 1.8.6-dev (https://github.com/novus/nvd3) 2021-05-25 */
 (function(){
 
 // set up main nv object
@@ -19281,8 +19281,9 @@ nv.models.timelineBarChart = function() {
             var gEnter = wrap.enter().append('g').attr('class', 'nvd3 nv-wrap nv-multiBarWithLegend').append('g');
             var g = wrap.select('g');
 
-            gEnter.append('g').attr('class', 'nv-background').append('rect')
-                .attr('width', availableWidth)
+            gEnter.append('g').attr('class', 'nv-background')
+                .append('rect')
+                .attr('width', '100%')
                 .attr('height', availableHeight / 2)
                 .attr('x', 0)
                 .attr('y', 0)
